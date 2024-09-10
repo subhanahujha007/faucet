@@ -1,8 +1,9 @@
 // app/page.tsx
 
 "use client";
-
+import bg from "../../public/background.jpg"
 import dynamic from "next/dynamic";
+import Image from "next/image";
 import {
   ConnectionProvider,
   WalletProvider,
@@ -19,7 +20,15 @@ const SendTransaction = dynamic(() => import("./_components/sendtrascation"), { 
 
 const WalletContextProvider = ({ children }: { children: React.ReactNode }) => {
   return (
-    <ConnectionProvider endpoint={clusterApiUrl(WalletAdapterNetwork.Devnet)}>
+    <div className="relative w-[100vw] h-[100vh]">
+    <Image
+      src={bg}
+      alt="bg"
+      layout="fill"
+      objectFit="cover"
+      className="absolute top-0 left-0 -z-10"
+    />
+    <ConnectionProvider  endpoint={clusterApiUrl(WalletAdapterNetwork.Devnet)}>
       <WalletProvider wallets={[]} autoConnect>
         <h2 className="ml-[500px] text-[40px]">Welcome to Airnet</h2>
         <WalletModalProvider>
@@ -31,11 +40,13 @@ const WalletContextProvider = ({ children }: { children: React.ReactNode }) => {
           </WalletModalProvider>
       </WalletProvider>
     </ConnectionProvider>
+    </div>
   );
 };
 
 export default function Home() {
   return (
+    <>
     <WalletContextProvider>
       <center>
         <div className="flex flex-col gap-4 border-black border-2 min-h-[60vh] rounded-lg bg-yellow-300 max-w-[25vw] items-center justify-center mx-auto">
@@ -45,5 +56,6 @@ export default function Home() {
         </div>
       </center>
     </WalletContextProvider>
+    </>
   );
 }
