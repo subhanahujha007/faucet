@@ -20,7 +20,7 @@ const SendTransaction = dynamic(() => import("./_components/sendtrascation"), { 
 
 const WalletContextProvider = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="relative w-[100vw] h-[100vh]">
+    <div className="relative w-[100vw] h-[110vh]">
     <Image
       src={bg}
       alt="bg"
